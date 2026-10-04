@@ -29,6 +29,10 @@ Skill 默认直接在聊天中回答，不制作网页或应用，不要求客�
 
 保险可以直接附上利益演示表图片，图片读取依赖宿主 AI 的视觉能力。脚本本身只接收识别后的 JSON，不包含 OCR 服务。
 
+### 一句话安装
+
+请从 [GitHub 仓库](https://github.com/snakeninja110/finance-return-calculator-skill) 安装“真实收益计算器”Skill 到当前 AI 的技能目录，检查 Node.js 18+ 环境，并验证可用中文“帮我算一下理财收益”调用。
+
 ## 文件
 
 - [SKILL.md](SKILL.md)：触发条件、问答流程和计算路由。
