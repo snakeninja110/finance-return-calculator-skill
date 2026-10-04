@@ -1,4 +1,4 @@
 interface:
   display_name: "真实收益计算器"
-  short_description: "问答计算年化收益和夏普比率，支持保险利益演示表图片及历史净值收益序列"
-  default_prompt: "使用 $finance-return-calculator 通过问答收集我的产品信息，计算年化收益；如有历史净值或收益序列也计算夏普比率，保险可读取利益演示表图片。"
+  short_description: "中文问答计算收益、年化、定投、夏普和回撤，支持保险利益表及回本分析"
+  default_prompt: "使用 $finance-return-calculator 帮我算一下理财收益。"
