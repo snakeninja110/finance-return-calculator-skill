@@ -15,6 +15,16 @@ Skill 默认直接在聊天中回答，不制作网页或应用，不要求客�
 
 ## 安装与使用
 
+### 一句话安装
+
+复制下面整句发送给 agent（代码块保留完整仓库地址）：
+
+```text
+请将 https://github.com/snakeninja110/finance-return-calculator-skill 仓库克隆或下载到当前 AI 的技能目录，文件夹命名为 finance-return-calculator，确保 SKILL.md 位于该文件夹根目录，检查 Node.js 18+ 环境并运行仓库中的计算示例验证安装。
+```
+
+### 手动安装与使用
+
 需要 Node.js 18+，无 npm 依赖。
 
 将本仓库整个目录复制到目标 AI 的技能目录，目录名使用 `finance-return-calculator`。Codex 可放在 `~/.codex/skills/finance-return-calculator/`。其他支持 `SKILL.md` 的 AI 使用其技能目录约定；没有自动发现能力时，让 AI 读取本目录的 `SKILL.md`。
@@ -28,10 +38,6 @@ Skill 默认直接在聊天中回答，不制作网页或应用，不要求客�
 也支持“扣完费赚几个点”“定投实际年化多少”“算算夏普比例”“从高点跌了多少”“这张保单哪年退不亏”等说法。对话中可直接续问“那10年呢”“只看保证的”“回撤也看看”，AI 会沿用已确认信息并补充必要缺项。匹配规则与容易混淆的表达见[中文触发说明](references/invocation.md)。
 
 保险可以直接附上利益演示表图片，图片读取依赖宿主 AI 的视觉能力。脚本本身只接收识别后的 JSON，不包含 OCR 服务。
-
-### 一句话安装
-
-请从 [GitHub 仓库](https://github.com/snakeninja110/finance-return-calculator-skill) 安装“真实收益计算器”Skill 到当前 AI 的技能目录，检查 Node.js 18+ 环境，并验证可用中文“帮我算一下理财收益”调用。
 
 ## 文件
 
