@@ -2,6 +2,8 @@
 
 本文件供 AI 内部调用计算引擎使用，不要求客户填写 JSON。客户通过问答或图片提供信息，AI 按 [conversation.md](conversation.md) 收集缺项、选择公式并组织输入，再在对话中交付收益结果。
 
+Python 入口 `scripts/calculate.py` 与 Node 入口 `scripts/calculate.mjs` 使用相同 action、字段、结果和退出码。优先使用已有 Python 3.9+，只依赖标准库；不需要安装 Node.js。
+
 以下数值均为接口测试假设，不代表实际产品报价。每个请求格式：
 
 ```json

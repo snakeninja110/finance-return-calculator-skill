@@ -58,7 +58,7 @@
 }
 ```
 
-运行 `node <skill目录>/scripts/calculate.mjs <识别结果.json>`。引擎以各年初保费为负现金流，以每个所选年末退保利益为正现金流，分别求保证与演示收益。第1年末退保只计第1次保费，不能先扣整个3年计划保费。输出 `paidPremium` 是该年实际已缴总额，`totalPlannedPremium` 是完整计划总额，二者不能混淆。
+优先运行 `python3 <skill目录>/scripts/calculate.py <识别结果.json>`；只有 Node 时可改用 `node <skill目录>/scripts/calculate.mjs <识别结果.json>`。引擎以各年初保费为负现金流，以每个所选年末退保利益为正现金流，分别求保证与演示收益。第1年末退保只计第1次保费，不能先扣整个3年计划保费。输出 `paidPremium` 是该年实际已缴总额，`totalPlannedPremium` 是完整计划总额，二者不能混淆。
 
 `actual-dates` 模式按周年日计算 XIRR，2月29日在非闰年的周年日按2月28日；`policy-years` 模式输出年序号现金流，年化标为“年度模型 IRR”。若周年日约定不同，使用明确日期的 `xirr`。两种模式都保留终值、累计收益与现金流；无解时年化为 null，附 error，不能展示为0%。
 

@@ -7,7 +7,7 @@ description: 对话式理财收益计算。用户问“算收益、赚了多少�
 
 作为对话式收益计算助手，通过自然语言问答获取客户产品信息，按公式计算并直接在聊天中解释结果。交付物是年化收益率及可核对的计算依据。除非用户另外明确要求，不制作网页、应用、表单、仪表盘或报告文件，不启动开发服务器。
 
-使用附带的确定性计算引擎，不要心算收益或重写公式。需要 Node.js 18+；无 npm 依赖、计算不会联网。路径均相对于本 Skill 文件夹，搬走整个文件夹即可运行。JSON 和命令行是 AI 的内部执行方式，不要求客户写 JSON、运行命令或操作计算器页面。
+使用附带的确定性计算引擎，不要心算收益或重写公式。优先使用已有 Python 3.9+，仅需标准库，无需安装 Node.js 或 pip 包；也兼容已有 Node.js 18+，无 npm 依赖。两种运行环境任选一种，JSON 输入及结果口径相同，计算不会联网。路径均相对于本 Skill 文件夹，搬走整个文件夹即可运行。JSON 和命令行是 AI 的内部执行方式，不要求客户写 JSON、运行命令或操作计算器页面。
 
 ## 对话工作流
 
@@ -44,11 +44,21 @@ description: 对话式理财收益计算。用户问“算收益、赚了多少�
 
 ## 调用
 
-把请求保存为 JSON，运行：
+先检查宿主已有运行环境，不为了使用 Skill 强制安装 Node.js。把请求保存为 JSON，有 Python 3.9+ 时运行：
+
+```bash
+python3 <skill目录>/scripts/calculate.py <请求.json>
+```
+
+只有 Node.js 18+ 时，也可运行：
 
 ```bash
 node <skill目录>/scripts/calculate.mjs <请求.json>
 ```
+
+Python 解释器命令可能为 `python3`、`python` 或 Windows 的 `py -3`，以实际版本为准。宿主只有 Python 代码工具、没有终端时，可将附带的 `scripts/calculate.py` 放入可访问的工作目录并导入其 `calculate(request)` 函数；沿用相同 JSON 结构，不重写公式。两个版本都不需要网络或第三方库。
+
+若宿主没有可运行 Python/Node 的工具，可继续问答与字段提取，但须说明无法执行精确计算，不能声称计算或安装验证成功。安装验证可用 Python 执行仓库示例，并运行 `python3 -B -m unittest discover -s <skill目录>/tests -v`；没有 Node 时只跳过跨语言对照测试，其余计算与独立运行测试仍执行。
 
 无文件参数时读取标准输入。成功时 stdout 为 `{ "ok": true, "action": ..., "result": ..., "warnings": [...], "provenance": ... }`；失败时为 `{ "ok": false, "error": ... }`，退出码为 1。不要把失败结果当作零收益。
 

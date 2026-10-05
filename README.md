@@ -20,12 +20,12 @@ Skill 默认直接在聊天中回答，不制作网页或应用，不要求客�
 复制下面整句发送给 agent（代码块保留完整仓库地址）：
 
 ```text
-请将 https://github.com/snakeninja110/finance-return-calculator-skill 仓库克隆或下载到当前 AI 的技能目录，文件夹命名为 finance-return-calculator，确保 SKILL.md 位于该文件夹根目录，检查 Node.js 18+ 环境并运行仓库中的计算示例验证安装。
+请将 https://github.com/snakeninja110/finance-return-calculator-skill 仓库克隆或下载到当前 AI 的技能目录，文件夹命名为 finance-return-calculator，确保 SKILL.md 位于根目录，优先使用已有 Python 3.9+（无需安装 Node.js），或已有 Node.js 18+，运行仓库中的计算示例验证安装。
 ```
 
 ### 手动安装与使用
 
-需要 Node.js 18+，无 npm 依赖。
+已有 **Python 3.9+ 或 Node.js 18+ 任一环境即可**，优先使用 Python。Python 版仅依赖标准库，不需要安装 Node.js、pip 包或其他依赖；Node 版也不需要 npm 包。运行环境由 AI 使用，客户仍只需聊天或上传资料。
 
 将本仓库整个目录复制到目标 AI 的技能目录，目录名使用 `finance-return-calculator`。Codex 可放在 `~/.codex/skills/finance-return-calculator/`。其他支持 `SKILL.md` 的 AI 使用其技能目录约定；没有自动发现能力时，让 AI 读取本目录的 `SKILL.md`。
 
@@ -52,6 +52,14 @@ Skill 默认直接在聊天中回答，不制作网页或应用，不要求客�
 
 ## 内部调用示例
 
+使用已有 Python：
+
+```bash
+python3 scripts/calculate.py request.json
+```
+
+也可使用已有 Node：
+
 ```bash
 node scripts/calculate.mjs request.json
 ```
@@ -63,6 +71,16 @@ node scripts/calculate.mjs request.json
 ```
 
 复合折算年化约3.28%。成功返回 `ok: true`；失败返回 `ok: false` 并以状态码1退出。省略文件参数时读取标准输入。
+
+两个入口使用同一份 JSON 参数，支持全部计算模式。只有 Python 代码工具的 AI 可导入 `scripts/calculate.py` 中的 `calculate(request)`，无需终端命令；没有任何代码执行能力的聊天环境只能收集信息和说明公式，不能完成脚本计算验证。
+
+## 验证
+
+```bash
+python3 -B -m unittest discover -s tests -v
+```
+
+测试覆盖已知计算结果、XIRR 多解、日期、异常输入，以及移除 Node 路径后运行14个文档示例。环境中也有 Node 时会额外进行两版对照；没有 Node 时该对照项自动跳过，Python 计算仍可独立完成。
 
 ## 数据与计算边界
 
